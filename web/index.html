@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Counter</title>
+    <script>
+        async function incrementCounter() {
+            const response = await fetch('/increment', {method: 'POST'});
+            const data = await response.json();
+            document.getElementById('counter').innerText = data.counter;
+        }
+
+        window.onload = async function() {
+            const response = await fetch('/counter');
+            const data = await response.json();
+            document.getElementById('counter').innerText = data.counter;
+        }
+    </script>
+</head>
+<body>
+    <h1>Counter: <span id="counter">0</span></h1>
+    <button onclick="incrementCounter()">Increment</button>
+</body>
+</html>

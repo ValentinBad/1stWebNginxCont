@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 import mysql.connector
 import os
 
@@ -11,6 +11,10 @@ def get_db_connection():
         password='password',
         database='counter_db'
     )
+
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 @app.route('/counter', methods=['GET'])
 def get_counter():
